@@ -5,21 +5,20 @@
 	excludesfile = /Users/abhatnagar/.gitignore
 	editor = /usr/bin/vim
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 [alias]
-	checkoutBranch = !bash checkoutBranch
-	switchAll = !bash switchAllBranches
-	sa = !bash switchAllBranches
+	sa = !bash ~/code/Scripts/switch-all-branches
 	open = !bash ~/code/Scripts/git-open
 	noproxy = !$(echo $(git config --global --remove-section http) && echo $(git config --global --remove-section https))
 	proxy = !$(git config --global http.proxy http://gatekeeper.mitre.org:80 && git config --global http.sslVerify false && git config --global https.proxy http://gatekeeper.mitre.org:80)
 	showMerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\"
 	cleanMerged = !git branch --merged | egrep -v \"(^\\*|master|dev)\" | xargs git branch -d
 	publish = !$(git push 2>&1 | grep git)
-	harddrop = !git stash;  git stash drop
+	hardDrop = !git reset; git checkout .; git clean -fdx
+	hardStash = !git commit -a -m \"Hard Stash\"
 	#cleanup-branches = !git branch | grep -v \"\\*\" | awk \"{ print $1 }\" | xargs git branch -d
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
@@ -31,8 +30,3 @@
 	template = /Users/abhatnagar/.stCommitMsg
 [url "https://github.com/"]
 	insteadOf = git://github.com/
-[http]
-	proxy = http://gatekeeper.mitre.org:80
-	sslVerify = false
-[https]
-	proxy = http://gatekeeper.mitre.org:80
