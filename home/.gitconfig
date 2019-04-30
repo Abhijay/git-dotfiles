@@ -2,7 +2,7 @@
 	name = Abhijay Saran
 	email = git@abhijay.com
 [core]
-	excludesfile = /Users/abhatnagar/.gitignore
+	excludesfile = /Users/abhijaysaran/.gitignore_global
 	editor = /usr/bin/vim
 [filter "lfs"]
 	process = git-lfs filter-process
@@ -30,3 +30,5 @@
 	template = /Users/abhatnagar/.stCommitMsg
 [url "https://github.com/"]
 	insteadOf = git://github.com/
+[color]
+	ui = auto
